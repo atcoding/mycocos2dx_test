@@ -5,7 +5,18 @@
 
 USING_NS_CC;
 
+class TouchPoint : public cocos2d::Ref
+{
+public:
+	Point getPoint();
+	void setPoint(Point &p);
+	static TouchPoint* initWithPoint(Point &p);
+private:
+	Point m_point;
+};
+
 class FarmLayer : public cocos2d::Layer
+//class FarmLayer : public cocos2d::Sprite
 {
 public:
 	static FarmLayer* getInstance();
@@ -15,12 +26,13 @@ public:
 	void scaleIn();
 	virtual void onEnter() override;
     virtual void onExit() override;
-	bool onTouchBegan(Touch* touch, Event* event);
-    void onTouchMoved(Touch* touch, Event* event);
-    void onTouchEnded(Touch* touch, Event* event);
+    void onTouchesBegan(const std::vector<Touch*>& touches, cocos2d::Event  *event);
+    void onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::Event  *event);
+    void onTouchesEnded(const std::vector<Touch*>& touches, cocos2d::Event  *event);
 private:
 	virtual bool init();
-	cocos2d::Sprite* m_floor;
+	Sprite* m_floor;
+	Point m_floorStartPoint;
 	//draw test
 	virtual void draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated) override;
 	void onDraw(const kmMat4 &transform, bool transformUpdated);

@@ -1,8 +1,22 @@
 #include "FarmLayer.h"
 #include "utils\FarmCoordinate.h"
-#include "VisibleRect.h"
 
 USING_NS_CC;
+
+Point TouchPoint::getPoint() {
+	return this->m_point;
+}
+
+void TouchPoint::setPoint(Point &p) {
+	this->m_point = p;
+}
+
+TouchPoint* TouchPoint::initWithPoint(Point &p) {
+	auto ret = new TouchPoint();
+	ret->setPoint(p);
+	ret->autorelease();
+	return ret;
+}
 
 static FarmLayer *s_SharedFarmyLayer = nullptr;
 
@@ -31,10 +45,13 @@ bool FarmLayer::init(void) {
 	m_floor = Sprite::create("res/farm_bg.jpg");
 
     // position the sprite on the center of the screen
-	m_floor->setPosition(Point(m_floor->getContentSize().width /2 , m_floor->getContentSize().height/2));
+	//m_floor->setPosition(Point(m_floor->getContentSize().width /2 , m_floor->getContentSize().height/2));
+	m_floor->setPosition(Point(0,0));
 
     // add the sprite as a child to this layer
     this->addChild(m_floor, -1);
+
+	m_floorStartPoint = Point(-m_floor->getContentSize().width /2 , -m_floor->getContentSize().height/2);
 
 	return true;
 }
@@ -59,12 +76,11 @@ void FarmLayer::onEnter()
 	Layer::onEnter();
     
     // Register Touch Event
-    auto listener = EventListenerTouchOneByOne::create();
-    listener->setSwallowTouches(true);
-    
-    listener->onTouchBegan = CC_CALLBACK_2(FarmLayer::onTouchBegan, this);
-    listener->onTouchMoved = CC_CALLBACK_2(FarmLayer::onTouchMoved, this);
-    listener->onTouchEnded = CC_CALLBACK_2(FarmLayer::onTouchEnded, this);
+    //auto listener = EventListenerTouchOneByOne::create();
+	auto listener = EventListenerTouchAllAtOnce::create();
+	listener->onTouchesBegan = CC_CALLBACK_2(FarmLayer::onTouchesBegan, this);
+    listener->onTouchesMoved = CC_CALLBACK_2(FarmLayer::onTouchesMoved, this);
+    listener->onTouchesEnded = CC_CALLBACK_2(FarmLayer::onTouchesEnded, this);
     
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 }
@@ -75,22 +91,39 @@ void FarmLayer::onExit()
 	Layer::onExit();
 } 
 
-bool FarmLayer::onTouchBegan(Touch* touch, Event* event)
+static Map<int,TouchPoint*> s_map;
+
+void FarmLayer::onTouchesBegan(const std::vector<Touch*>& touches, Event  *event)
 {
-    return true;
+	for(auto &item : touches) {
+		s_map.insert(item->getID(),  TouchPoint::initWithPoint(item->getLocation()));
+	}
 }
 
-void FarmLayer::onTouchMoved(Touch* touch, Event* event)
+void FarmLayer::onTouchesMoved(const std::vector<Touch*>& touches, Event  *event)
 {
-    CCLOG("Paddle::onTouchMoved id = %d, x = %f, y = %f", touch->getID(), touch->getLocation().x, touch->getLocation().y);
-    
-    auto touchPoint = touch->getLocation();
-    
-    setPosition( Point(touchPoint.x, getPosition().y) );
+	auto &item = touches[0];
+	auto lastpt = s_map.at(item->getID());
+	auto dx = item->getLocation().x - lastpt->getPoint().x;
+	auto dy = item->getLocation().y - lastpt->getPoint().y;
+	lastpt->setPoint(item->getLocation());
+	auto cur = getPosition();
+	setPosition(Point(cur.x + dx,cur.y+dy));
+	//CCLOG("dx=%f,dy=%f", dx, dy);
 }
 
-void FarmLayer::onTouchEnded(Touch* touch, Event* event)
+void FarmLayer::onTouchesEnded(const std::vector<Touch*>& touches, Event  *event)
 {
+	for(auto &item : touches) {
+		s_map.erase(item->getID());
+	}
+	//设置一下锚点
+	auto ccsize = m_floor->getContentSize();
+	CCLOG("size,width=%f,height=%f", ccsize.width, ccsize.height);
+	auto xsize = Size(ccsize.width*getScale(), ccsize.height*getScale());
+	CCLOG("Fix size ,width = %f,height=%f", xsize.width, xsize.height);
+	auto pt = getPosition();
+	CCLOG("pt,x=%f,y=%f", pt.x, pt.y);
 } 
 
 
