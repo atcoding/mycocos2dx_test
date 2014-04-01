@@ -139,7 +139,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\layer\FarmLayer.cpp" />
     <ClCompile Include="..\Classes\utils\FarmCoordinate.cpp" />
     <ClCompile Include="..\Classes\utils\GameDebug.cpp" />
-    <ClCompile Include="..\Classes\VisibleRect.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,7 +148,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\layer\FarmLayer.h" />
     <ClInclude Include="..\Classes\utils\FarmCoordinate.h" />
     <ClInclude Include="..\Classes\utils\GameDebug.h" />
-    <ClInclude Include="..\Classes\VisibleRect.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
