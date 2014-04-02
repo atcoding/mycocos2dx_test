@@ -31,6 +31,27 @@ FarmLayer* FarmLayer::getInstance()
 	return s_SharedFarmyLayer;
 }
 
+float FarmLayer::getFloorX() 
+{
+	if (s_SharedFarmyLayer) {
+		return  -1 * s_SharedFarmyLayer->m_floor->getContentSize().width/2 ;
+	}
+	return 0;
+}
+
+float FarmLayer::getFloorY() 
+{
+	if (s_SharedFarmyLayer) {
+		return -1 * s_SharedFarmyLayer->m_floor->getContentSize().height/2 ;
+	}
+	return 0;
+}
+
+Point FarmLayer::getFloorCenterPoint()
+{
+	return Point(0,0);
+}
+
 FarmLayer::FarmLayer()
 {
 	
@@ -50,8 +71,6 @@ bool FarmLayer::init(void) {
 
     // add the sprite as a child to this layer
     this->addChild(m_floor, -1);
-
-	m_floorStartPoint = Point(-m_floor->getContentSize().width /2 , -m_floor->getContentSize().height/2);
 
 	return true;
 }
@@ -118,12 +137,13 @@ void FarmLayer::onTouchesEnded(const std::vector<Touch*>& touches, Event  *event
 		s_map.erase(item->getID());
 	}
 	//设置一下锚点
+	/*
 	auto ccsize = m_floor->getContentSize();
 	CCLOG("size,width=%f,height=%f", ccsize.width, ccsize.height);
 	auto xsize = Size(ccsize.width*getScale(), ccsize.height*getScale());
 	CCLOG("Fix size ,width = %f,height=%f", xsize.width, xsize.height);
 	auto pt = getPosition();
-	CCLOG("pt,x=%f,y=%f", pt.x, pt.y);
+	CCLOG("pt,x=%f,y=%f", pt.x, pt.y);*/
 } 
 
 
@@ -149,12 +169,18 @@ void FarmLayer::onDraw(const kmMat4 &transform, bool transformUpdated)
     glLineWidth( 0.9f );
     DrawPrimitives::setDrawColor4B(255,0,0,255);
 
-	auto fc = FarmCoordinate::getCellAt(0,0,10,10);
-	DrawPrimitives::drawLine(fc->left, fc->top);
-	 DrawPrimitives::setDrawColor4B(0,255,255,255);
-	DrawPrimitives::drawLine(fc->top, fc->right);
-	DrawPrimitives::drawLine(fc->right, fc->bottom);
-	DrawPrimitives::drawLine(fc->bottom, fc->left);
+	for(int i=0; i < FarmCoordinate::FARM_GRID_WIDTH ; i ++) 
+	{
+		for (int j=0; j< FarmCoordinate::FARM_GRID_HEIGHT ; j++) 
+		{
+			auto fc = FarmCoordinate::getCellAt(i,j);
+			DrawPrimitives::drawLine(fc->left, fc->top);
+			DrawPrimitives::drawLine(fc->top, fc->right);
+			DrawPrimitives::drawLine(fc->right, fc->bottom);
+			DrawPrimitives::drawLine(fc->bottom, fc->left);
+		}
+	}
+	
 	//CCLOG("%f,%f,%f,%f", fc->left.x, fc->left.y, fc->top.x, fc->top.y);
 	//DrawPrimitives::drawLine( VisibleRect::leftTop(), VisibleRect::rightBottom() );
     

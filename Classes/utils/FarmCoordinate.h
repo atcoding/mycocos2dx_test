@@ -21,9 +21,11 @@ struct FarmCell {
 class FarmCoordinate 
 {
 public:
+	static float FARM_GRID_WIDTH;
+	static float FARM_GRID_HEIGHT;
 	static float FARM_GRID_SIZE;
 	static FarmCell* getCellAt(int i, int j, int w=1, int h=1);
-	static cocos2d::Point translateFromFarmPoint(float x, float y);
+	static cocos2d::Point translateFromFarmPoint(float x, float y, float z=0);
 };
 
 #endif // __FARM_COORDINATE_H__

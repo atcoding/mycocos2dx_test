@@ -20,7 +20,11 @@ class FarmLayer : public cocos2d::Layer
 {
 public:
 	static FarmLayer* getInstance();
-    FarmLayer();
+	static float getFloorX();
+	static float getFloorY();
+	static Point getFloorCenterPoint();
+    
+	FarmLayer();
 	~FarmLayer();
 	void scaleOut();
 	void scaleIn();
@@ -32,7 +36,6 @@ public:
 private:
 	virtual bool init();
 	Sprite* m_floor;
-	Point m_floorStartPoint;
 	//draw test
 	virtual void draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated) override;
 	void onDraw(const kmMat4 &transform, bool transformUpdated);
