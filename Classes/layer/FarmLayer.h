@@ -28,6 +28,7 @@ public:
 	~FarmLayer();
 	void scaleOut();
 	void scaleIn();
+	void switchDebug();
 	virtual void onEnter() override;
     virtual void onExit() override;
     void onTouchesBegan(const std::vector<Touch*>& touches, cocos2d::Event  *event);
@@ -37,6 +38,7 @@ private:
 	virtual bool init();
 	Sprite* m_floor;
 	//draw test
+	bool m_debug;
 	virtual void draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated) override;
 	void onDraw(const kmMat4 &transform, bool transformUpdated);
     CustomCommand _customCommand;

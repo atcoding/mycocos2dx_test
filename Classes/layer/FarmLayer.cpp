@@ -53,6 +53,7 @@ Point FarmLayer::getFloorCenterPoint()
 }
 
 FarmLayer::FarmLayer()
+	: m_debug(false)
 {
 	
 }
@@ -87,6 +88,10 @@ void FarmLayer::scaleOut(void){
 	scale -= 0.2f;
 	scale = scale<0.2 ? 0.2 : scale;
 	this->setScale(scale);
+}
+
+void FarmLayer::switchDebug(void){
+	m_debug = !m_debug;
 }
 
 void FarmLayer::onEnter()
@@ -156,9 +161,11 @@ void FarmLayer::draw(Renderer *renderer, const kmMat4 &transform, bool transform
 
 void FarmLayer::onDraw(const kmMat4 &transform, bool transformUpdated)
 {
+	if (!m_debug) {
+		return;
+	}
     kmGLPushMatrix();
     kmGLLoadMatrix(&transform);
-    
 
     CHECK_GL_ERROR_DEBUG();
 
@@ -168,11 +175,8 @@ void FarmLayer::onDraw(const kmMat4 &transform, bool transformUpdated)
     //  glDisable(GL_LINE_SMOOTH);
     glLineWidth( 0.9f );
     DrawPrimitives::setDrawColor4B(255,0,0,255);
-
-	for(int i=0; i < FarmCoordinate::FARM_GRID_WIDTH ; i ++) 
-	{
-		for (int j=0; j< FarmCoordinate::FARM_GRID_HEIGHT ; j++) 
-		{
+	for(int i=0; i < 100; i ++) {
+		for (int j=0; j<100; j++) {
 			auto fc = FarmCoordinate::getCellAt(i,j);
 			DrawPrimitives::drawLine(fc->left, fc->top);
 			DrawPrimitives::drawLine(fc->top, fc->right);
@@ -180,12 +184,8 @@ void FarmLayer::onDraw(const kmMat4 &transform, bool transformUpdated)
 			DrawPrimitives::drawLine(fc->bottom, fc->left);
 		}
 	}
-	
-	//CCLOG("%f,%f,%f,%f", fc->left.x, fc->left.y, fc->top.x, fc->top.y);
-	//DrawPrimitives::drawLine( VisibleRect::leftTop(), VisibleRect::rightBottom() );
     
     CHECK_GL_ERROR_DEBUG();
-
 	    
     //end draw
     kmGLPopMatrix();

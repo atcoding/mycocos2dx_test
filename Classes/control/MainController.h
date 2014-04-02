@@ -20,6 +20,9 @@ public:
 
 	// scale in callback
 	void menuScaleInCallback(cocos2d::Ref* pSender);
+
+	// debug mode
+	void menuDebugCallback(cocos2d::Ref* pSender);
     
     // implement the "static create()" method manually
     CREATE_FUNC(MainController);

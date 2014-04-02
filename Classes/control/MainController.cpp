@@ -56,8 +56,14 @@ bool MainController::init()
 	scaleInItem->setContentSize(Size(40,40));
 	scaleInItem->setPosition(Point(closeItem->getPositionX(), closeItem->getPositionY()+100));
 
+	auto debugItem = MenuItemImage::create("res/debug.png",
+                                           "res/debug.png",
+										   CC_CALLBACK_1(MainController::menuDebugCallback, this));
+	debugItem->setContentSize(Size(40,40));
+	debugItem->setPosition(Point(closeItem->getPositionX(), closeItem->getPositionY()+150));
+
     // create menu, it's an autorelease object
-	auto menu = Menu::create(closeItem, scaleOutItem, scaleInItem, NULL);
+	auto menu = Menu::create(closeItem, scaleOutItem, scaleInItem, debugItem, NULL);
     menu->setPosition(Point::ZERO);
     this->addChild(menu, 1);
 
@@ -111,4 +117,9 @@ void MainController::menuScaleInCallback(Ref* pSender)
 void MainController::menuScaleOutCallback(Ref* pSender)
 {
 	FarmLayer::getInstance()->scaleOut();
+}
+
+void MainController::menuDebugCallback(Ref* pSender)
+{
+	FarmLayer::getInstance()->switchDebug();
 }
