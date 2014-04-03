@@ -1,5 +1,4 @@
 #include "FarmLayer.h"
-#include "utils\FarmCoordinate.h"
 
 USING_NS_CC;
 
@@ -29,27 +28,6 @@ FarmLayer* FarmLayer::getInstance()
 	}
 
 	return s_SharedFarmyLayer;
-}
-
-float FarmLayer::getFloorX() 
-{
-	if (s_SharedFarmyLayer) {
-		return  -1 * s_SharedFarmyLayer->m_floor->getContentSize().width/2 ;
-	}
-	return 0;
-}
-
-float FarmLayer::getFloorY() 
-{
-	if (s_SharedFarmyLayer) {
-		return -1 * s_SharedFarmyLayer->m_floor->getContentSize().height/2 ;
-	}
-	return 0;
-}
-
-Point FarmLayer::getFloorCenterPoint()
-{
-	return Point(0,0);
 }
 
 FarmLayer::FarmLayer()
@@ -175,8 +153,8 @@ void FarmLayer::onDraw(const kmMat4 &transform, bool transformUpdated)
     //  glDisable(GL_LINE_SMOOTH);
     glLineWidth( 0.9f );
     DrawPrimitives::setDrawColor4B(255,0,0,255);
-	for(int i=0; i < 100; i ++) {
-		for (int j=0; j<100; j++) {
+	for(int i=5; i < 49; i ++) {
+		for (int j=5; j< 49; j++) {
 			auto fc = FarmCoordinate::getCellAt(i,j);
 			DrawPrimitives::drawLine(fc->left, fc->top);
 			DrawPrimitives::drawLine(fc->top, fc->right);

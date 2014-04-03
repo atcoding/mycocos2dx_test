@@ -1,7 +1,7 @@
 #ifndef __MAINCONTROLLER_SCENE_H__
 #define __MAINCONTROLLER_SCENE_H__
 
-#include "cocos2d.h"
+#include "game.h"
 
 class MainController : public cocos2d::Layer
 {

@@ -135,7 +135,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\control\MainController.cpp" />
-    <ClCompile Include="..\Classes\display\BuildingDisplay.cpp" />
+    <ClCompile Include="..\Classes\display\BuildingDisplayObject.cpp" />
     <ClCompile Include="..\Classes\layer\FarmLayer.cpp" />
     <ClCompile Include="..\Classes\utils\FarmCoordinate.cpp" />
     <ClCompile Include="..\Classes\utils\GameDebug.cpp" />
@@ -144,10 +144,23 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\control\MainController.h" />
-    <ClInclude Include="..\Classes\display\BuildingDisplay.h" />
+    <ClInclude Include="..\Classes\display\BuildingDisplayObject.h" />
+    <ClInclude Include="..\Classes\game.h" />
+    <ClInclude Include="..\Classes\interface\IGameObject.h" />
     <ClInclude Include="..\Classes\layer\FarmLayer.h" />
     <ClInclude Include="..\Classes\utils\FarmCoordinate.h" />
     <ClInclude Include="..\Classes\utils\GameDebug.h" />
+    <ClInclude Include="..\Classes\utils\GameVars.h" />
+    <ClInclude Include="..\Classes\utils\rapidjson\document.h" />
+    <ClInclude Include="..\Classes\utils\rapidjson\filestream.h" />
+    <ClInclude Include="..\Classes\utils\rapidjson\internal\pow10.h" />
+    <ClInclude Include="..\Classes\utils\rapidjson\internal\stack.h" />
+    <ClInclude Include="..\Classes\utils\rapidjson\internal\strfunc.h" />
+    <ClInclude Include="..\Classes\utils\rapidjson\prettywriter.h" />
+    <ClInclude Include="..\Classes\utils\rapidjson\rapidjson.h" />
+    <ClInclude Include="..\Classes\utils\rapidjson\reader.h" />
+    <ClInclude Include="..\Classes\utils\rapidjson\stringbuffer.h" />
+    <ClInclude Include="..\Classes\utils\rapidjson\writer.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

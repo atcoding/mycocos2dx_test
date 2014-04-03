@@ -1,0 +1,17 @@
+{
+	"buildings":[{
+		"type_id":"building.resource.elixir_storage",
+		"name":"Elixir Storage",
+		"width":2,
+		"height":2,
+		"type":"resource",
+	},
+	{
+		"type_id":"building.defensive.cannon",
+		"name":"Cannon",
+		"width":2,
+		"height":2,
+		"type":"defensive",
+	}
+	]
+}

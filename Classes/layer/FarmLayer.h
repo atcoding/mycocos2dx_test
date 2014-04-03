@@ -1,7 +1,7 @@
 #ifndef __FARM_LAYER_H__
 #define __FARM_LAYER_H__
 
-#include "cocos2d.h"
+#include "game.h"
 
 USING_NS_CC;
 
@@ -20,9 +20,6 @@ class FarmLayer : public cocos2d::Layer
 {
 public:
 	static FarmLayer* getInstance();
-	static float getFloorX();
-	static float getFloorY();
-	static Point getFloorCenterPoint();
     
 	FarmLayer();
 	~FarmLayer();
