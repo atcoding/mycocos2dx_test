@@ -45,7 +45,7 @@ const int FARM_GRID_HEIGHT = 44;
 const float FARM_GRID_DIAGONAL = 80.0f;
 //农场每个格子对角线长度的一半
 const float FARM_GRID_DIAGONAL_2 = 40.0f;
-//农场Y轴的视角系数,角度大概是41.6度，cos(41.6)
-const double FARM_Y_PERSPECTIVE_FACTOR = 0.74779809049853187810572050805846;
+//农场Y轴的视角系数 0.75
+const float FARM_Y_PERSPECTIVE_FACTOR = 0.75;
 
 #endif // __GAME_VARS_H__
