@@ -152,9 +152,16 @@ void FarmLayer::onDraw(const kmMat4 &transform, bool transformUpdated)
     // GL_SMOOTH_LINE_WIDTH_RANGE = (1,1) on iPhone
     //  glDisable(GL_LINE_SMOOTH);
     glLineWidth( 0.9f );
-    DrawPrimitives::setDrawColor4B(255,0,0,255);
-	for(int i=5; i < 49; i ++) {
-		for (int j=5; j< 49; j++) {
+    
+	int i,j;
+	
+	for(i=0; i < 54; i ++) {
+		for (j=0; j< 54; j++) {
+			if (i >=5 && j>=5 && i<49 && j<49) {
+				DrawPrimitives::setDrawColor4B(255,0,0,255);
+			}else {
+				DrawPrimitives::setDrawColor4B(0,0,255,255);
+			}
 			auto fc = FarmCoordinate::getCellAt(i,j);
 			DrawPrimitives::drawLine(fc->left, fc->top);
 			DrawPrimitives::drawLine(fc->top, fc->right);
@@ -162,7 +169,7 @@ void FarmLayer::onDraw(const kmMat4 &transform, bool transformUpdated)
 			DrawPrimitives::drawLine(fc->bottom, fc->left);
 		}
 	}
-    
+
     CHECK_GL_ERROR_DEBUG();
 	    
     //end draw
