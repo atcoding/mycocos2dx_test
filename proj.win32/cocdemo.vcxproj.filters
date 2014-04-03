@@ -22,6 +22,15 @@
     <Filter Include="Classes\utils">
       <UniqueIdentifier>{9066877d-8f19-427d-be7b-1663b161e1c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\utils\rapidjson">
+      <UniqueIdentifier>{7b7f7f8c-8970-48c5-8b5c-a5e412c8cd3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\utils\rapidjson\internal">
+      <UniqueIdentifier>{ad5ce4df-6239-4317-8009-305365f1c368}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\interface">
+      <UniqueIdentifier>{09f20b89-3432-4645-9c63-82c02eac24f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -29,9 +38,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\display\BuildingDisplay.cpp">
-      <Filter>Classes\display</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\control\MainController.cpp">
       <Filter>Classes\control</Filter>
@@ -45,6 +51,9 @@
     <ClCompile Include="..\Classes\utils\GameDebug.cpp">
       <Filter>Classes\utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\display\BuildingDisplayObject.cpp">
+      <Filter>Classes\display</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -52,9 +61,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\display\BuildingDisplay.h">
-      <Filter>Classes\display</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\control\MainController.h">
       <Filter>Classes\control</Filter>
@@ -67,6 +73,48 @@
     </ClInclude>
     <ClInclude Include="..\Classes\utils\GameDebug.h">
       <Filter>Classes\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\rapidjson\document.h">
+      <Filter>Classes\utils\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\rapidjson\filestream.h">
+      <Filter>Classes\utils\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\rapidjson\prettywriter.h">
+      <Filter>Classes\utils\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\rapidjson\rapidjson.h">
+      <Filter>Classes\utils\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\rapidjson\reader.h">
+      <Filter>Classes\utils\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\rapidjson\stringbuffer.h">
+      <Filter>Classes\utils\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\rapidjson\writer.h">
+      <Filter>Classes\utils\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\rapidjson\internal\pow10.h">
+      <Filter>Classes\utils\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\rapidjson\internal\stack.h">
+      <Filter>Classes\utils\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\rapidjson\internal\strfunc.h">
+      <Filter>Classes\utils\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\interface\IGameObject.h">
+      <Filter>Classes\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\utils\GameVars.h">
+      <Filter>Classes\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\game.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\display\BuildingDisplayObject.h">
+      <Filter>Classes\display</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
